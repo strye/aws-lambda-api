@@ -53,14 +53,14 @@ Here is a sample policy of permission sneed by the lambda function. The code exp
 ```
 
 
-### Test create object
+### Test object for create (post method)
 ```javascript
 {
     "operation": "create",
     "TableName": "myTable",
     "Item": {
-        "Parent": "value3",
-        "Id": "value2",
+        "Parent": "1",
+        "Id": "1",
         "Key1": "value1"
     }
 }
@@ -70,9 +70,9 @@ Here is a sample policy of permission sneed by the lambda function. The code exp
 ```javascript
 #set($inputRoot = $input.path('$'))
 {
-	"operation": "read",
+    "operation": "read",
     "TableName": "myTable",
-    "Item": {
+    "Key": {
         "Parent": "$inputRoot.parent",
         "Id": "$inputRoot.id"
     }
