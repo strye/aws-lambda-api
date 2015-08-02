@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "devDependencies": {
+    "aws-sdk": "latest",
+    "del": "^1.1.1",
+    "gulp": "^3.8.5",
+    "gulp-awslambda": "^0.2.2",
+    "gulp-shell": "^0.4.2",
+    "gulp-zip": "^3.0.2"
+  },
+  "scripts": {
+    "test": "gulp test:local",
+    "start": "gulp serve"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

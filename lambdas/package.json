@@ -1,0 +1,14 @@
+{
+	"name": "my-lambda-template",
+	"description": "A sample template for building rest services with AWS dynamoDb, Lamdas & API Gateway.",
+	"version": "0.1.0",
+	"author": {
+		"name": "Will Strye",
+		"email": "will.strye@malignantgenius.com",
+		"url": "www.malignantgenius.com"
+	},
+	"dependencies": {
+		"aws-sidekick": "strye/aws-sidekick"
+	},
+	"keywords": ["template", "aws", "dynamodb", "api-gateway"]
+}

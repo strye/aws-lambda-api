@@ -1,0 +1,18 @@
+{
+	"region": "us-west-2",
+	"dynamoDb": {
+		/*"localEndpoint": "http://localhost:8000"*/
+	},
+	"lambda": {
+		"functionName": "myRestFunction",
+		"params": {
+			"FunctionName": "myRestFunction",
+			"Handler": "lambda.handler",
+			"Role": "arn:aws:iam::049162673837:role/lambda.tester",
+			/*"Runtime": "nodejs", */
+			"Description": "My sample lambda function for dynamo",
+			"MemorySize": 128,
+			"Timeout": 3
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"AttributeDefinitions": [ 
+		{
+			"AttributeName": "Parent", 
+			"AttributeType": "S" 
+		},
+		{
+			"AttributeName": "Id", 
+			"AttributeType": "S" 
+		}
+	],
+	"KeySchema": [ 
+		{
+			"AttributeName": "Parent", 
+			"KeyType": "HASH" 
+		},
+		{
+			"AttributeName": "Id", 
+			"KeyType": "RANGE" 
+		}
+	],
+	"ProvisionedThroughput": { 
+		"ReadCapacityUnits": 1, 
+		"WriteCapacityUnits": 1 
+	},
+	"TableName": "myTable" 
+}
