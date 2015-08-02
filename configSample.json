@@ -1,12 +1,15 @@
 {
 	"region": "us-west-2",
-	"dynamoDb": { },
+	"dynamoDb": {
+		/*"localEndpoint": "http://localhost:8000"*/ /*used for local testing of dynamodb */
+	},
 	"lambda": {
 		"functionName": "myRestFunction",
 		"params": {
 			"FunctionName": "myRestFunction",
 			"Handler": "lambda.handler",
-			"Role": "arn:aws:iam::049162673837:role/lambda.tester",
+			"Role": "{your-arn-for-role}",
+			/*"Runtime": "nodejs", */ /* not supported by gulp-awslambda for upserts */
 			"Description": "My sample lambda function for dynamo",
 			"MemorySize": 128,
 			"Timeout": 3

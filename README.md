@@ -9,6 +9,8 @@ The template can be modified in many differnt ways to fit your workflow or code 
 - write tests
 
 ## Setup
+Duplicate the file "configSample.json" and rename "config.json". remove all comments and update the settings to meet your project needs. You will also need to set the ARN to your lambda role. "config.json" is listed in gitignore, so that your local settings will not be uploaded into source control. You may of course change this for your own purposes, when loading into a private repository.
+
 
 ## Implementation notes
 The following are some notes about the implementaitons and code snipits for manual setup.
