@@ -61,8 +61,84 @@ gulp.task('lambda:deploy', ['lambda:build'], function() {
 
 
 
-
+var restApiId = "";
 /*** Setup Gateway API  		********/
-// Not yet available in the SDKs. Looking at executing cli command until then.
-// Doesn't look like this is in the cli yet either. hurm.
+gulp.task('apig:create', function() {
+	var awsOptions = {region: config.region};
+	if (config.awsProfile) awsOptions.profile = config.awsProfile;
+
+	var apigateway = new aws.APIGateway(awsOptions);
+
+	apigateway.createRestApi(config.apiGateway.restParams, function(err, data) {
+		if (err) console.log(err, err.stack); // an error occurred
+		else {  // successful response
+			restApiId = data.id;
+			console.log(data);
+		}           
+	});
+})
+gulp.task('apig:resource', function() {
+	var awsOptions = {region: config.region};
+	if (config.awsProfile) awsOptions.profile = config.awsProfile;
+
+	var apigateway = new aws.APIGateway(awsOptions);
+
+	var params = config.apiGateway.resourceParams;
+	params.restApiId = restApiId;
+	apigateway.createResource(params, function(err, data) {
+		if (err) console.log(err, err.stack); // an error occurred
+		else {  // successful response
+			apiResourceId = data.id;
+			console.log(data);
+		}           
+	});
+}
+
+gulp.task('apig:resource:get', function() {
+	var awsOptions = {region: config.region};
+	if (config.awsProfile) awsOptions.profile = config.awsProfile;
+
+	var apigateway = new aws.APIGateway(awsOptions);
+
+	var params = {
+		authorizationType: 'NONE', /* required */
+		httpMethod: 'GET', /* required */
+		resourceId: '', /* required */
+		restApiId: '', /* required */
+		apiKeyRequired: false,
+		requestParameters: {
+			someKey: false,
+			anotherKey: false
+		}
+	};
+
+	var params = config.apiGateway.resourceGetParams;
+	params.restApiId = restApiId;
+	params.resourceId = apiResourceId;
+
+	apigateway.putMethod(params, function(err, data) {
+		if (err) console.log(err, err.stack); // an error occurred
+		else     console.log(data);           // successful response
+	});
+}
+
+
+// For deployment
+//   Create Dynamo
+//     Setup Dynamo Table
+//     
+//   Create Create Lambda
+//     Build Package
+//     Deploy Package
+//     OUTPUT: Lambda URI needed for ApiG
+//   Create API Gateway
+//     Setup API
+//       Create Stages
+//       Setup Resource
+//         Setup Methods
+//           GET
+//           POST
+//           PUT
+//           DELETE
+
 

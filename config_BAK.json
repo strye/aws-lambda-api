@@ -1,0 +1,74 @@
+{
+	"region": "us-west-2",
+	"dynamoDb": { },
+	"lambda": {
+		"functionName": "myRestFunction",
+		"params": {
+			"FunctionName": "myRestFunction",
+			"Handler": "lambda.handler",
+			"Role": "arn:aws:iam::049162673837:role/lambda.tester",
+			"Description": "My sample lambda function for dynamo",
+			"MemorySize": 128,
+			"Timeout": 3
+		}
+	},
+	"apiGateway": {
+		"name": "mySample",
+		"restApi": {
+			"name": "mySample", /* required */
+			"description": "My sample Api Gateway for lambda"
+		},
+		"resourceOne": {
+			"apiKeyRequired": false,
+			"authorizationType": "NONE", /* required */
+			"resourceParams": {
+				"parentId": "/", /* required */
+				"pathPart": "sample", /* required */
+				"restApiId": "" /* required */
+			},
+			"getMethod" : {
+				"lambdaUri": "", 
+				"methodParams": {
+					"requestParameters": {
+						"someKey": false,
+						"anotherKey": false
+					}
+				},
+				"getIntegration": {
+					"httpMethod": 'STRING_VALUE', /* required */
+					"resourceId": 'STRING_VALUE', /* required */
+					"restApiId": //'STRING_VALUE', /* required */
+					
+					"type": "AWS", //'HTTP | AWS | MOCK', /* required */
+					/*
+					cacheKeyParameters: [
+						'STRING_VALUE',
+					],
+					cacheNamespace: 'STRING_VALUE',
+					*/
+					//credentials: 'STRING_VALUE',
+					//integrationHttpMethod: 'STRING_VALUE',
+					"requestParameters": {
+						"someKey": 'STRING_VALUE',
+						/* anotherKey: ... */
+					},
+					"requestTemplates": {
+						"operation": "read",
+						"TableName": "myTable",
+						"Key": {
+							"Parent": "$input.params('parent')",
+							"Id": "$input.params('id')"
+						}
+					}
+					//uri: 'STRING_VALUE'
+				}
+			},
+			"postMethod" : {
+				"requestParameters": {
+					"someKey": false,
+					"anotherKey": false
+				}
+			}
+		}
+	}
+}
